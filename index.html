@@ -135,13 +135,13 @@
             } else {
                 alert("Welcome home, Marshal.");
             }
-            window.location.href = "virtualntbks.html";
+            window.location.href = "";
         } else {
             attempts = attempts + 1;
             errorMsg.innerHTML = "Invalid login. Attempt " + attempts + " of 3";
             
             if (attempts >= 3) {
-                alert("Terminal locked. Contact the Head Marshal.");
+                alert("Too many failed attempts. Please contact the Head Marshal or try again later.");
             }
         }
     }
@@ -152,7 +152,7 @@
             document.getElementById("password").value = "";
             document.getElementById("rememberMe").checked = false;
             document.getElementById("message").innerHTML = "";
-            alert("All fields have been cleared.");
+            alert("Success! All fields have been cleared.");
         }
     }
 
