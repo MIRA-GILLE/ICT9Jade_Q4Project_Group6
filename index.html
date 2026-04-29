@@ -58,6 +58,17 @@
         border-radius: 5px;
         margin-top: 20px;
         font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+        background-color: #2d3e50;
+    }
+
+    input:focus {
+        outline: none;
+        border: 2px solid #D4AF37 !important;
+        box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
     }
 
     #message {
@@ -78,14 +89,21 @@
 
     <form>
         <label>Student Email:</label>
-        <input type="email" id="email" class="form-control">
+        <input type="email" id="email" class="form-control"  placeholder="Enter your Student Email">
 
-        <label>Student Password:</label>
-        <input type="password" id="password" class="form-control" placeholder="Enter your password">
+
+        <label>Student ID:</label>
+        <input type="password" id="password" class="form-control" placeholder="Enter your Student ID...">
+
+        <div style="display: flex; align-items: center; margin-top: 15px;">
+            <input type="checkbox" id="rememberMe" style="margin-right: 8px; cursor: pointer;">
+            <label style="margin: 0; margin-top: 0; font-size: 12px;" for="rememberMe">Remember Me</label>
+        </div>
 
         <div id="message"></div>
 
         <button type="button" class="btn-login" onclick="checkLogin()">Enter Portal</button>
+        <button type="button" class="btn-login" style="background-color: #666; margin-top: 10px;" onclick="clearAll()">Clear All</button>
     </form>
 </div>
 
@@ -95,10 +113,15 @@
     function checkLogin() {
         var userEmail = document.getElementById("email").value;
         var userPass = document.getElementById("password").value;
+        var rememberMe = document.getElementById("rememberMe").checked;
         var errorMsg = document.getElementById("message");
 
         if (userEmail == "cruz.vjd@gmail.com" && userPass == "0192837465") {
-            alert("Welcome home, Marshal.");
+            if (rememberMe) {
+                alert("Login successful! Your credentials will be remembered.");
+            } else {
+                alert("Welcome home, Marshal.");
+            }
             window.location.href = "virtualntbks.html";
         } else {
             attempts = attempts + 1;
@@ -109,6 +132,19 @@
             }
         }
     }
+
+    function clearAll() {
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("rememberMe").checked = false;
+        document.getElementById("message").innerHTML = "";
+    }
+
+    document.getElementById("rememberMe").addEventListener("change", function() {
+        if (this.checked) {
+            alert("Your login credentials will be remembered for next time.");
+        }
+    });
 </script>
 
 </body>
