@@ -76,6 +76,19 @@
         color: red;
         margin-top: 10px;
     }
+
+    .btn-clear {
+        background-color: #666;
+        margin-top: 10px;
+        width: 80px;
+        padding: 6px;
+        font-size: 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-clear:hover {
+        background-color: #d32f2f;
+    }
 </style>
 </head>
 <body>
@@ -96,14 +109,14 @@
         <input type="password" id="password" class="form-control" placeholder="Enter your Student ID...">
 
         <div style="display: flex; align-items: center; margin-top: 15px;">
-            <input type="checkbox" id="rememberMe" style="margin-right: 8px; cursor: pointer;">
-            <label style="margin: 0; margin-top: 0; font-size: 12px;" for="rememberMe">Remember Me</label>
+            <input type="checkbox" id="rememberMe" style="margin-right: 10px; cursor: pointer; width: 18px; height: 18px;">
+            <label style="margin: 0; margin-top: 0; font-size: 16px; font-weight: 500;" for="rememberMe">Remember Me</label>
         </div>
 
         <div id="message"></div>
 
         <button type="button" class="btn-login" onclick="checkLogin()">Enter Portal</button>
-        <button type="button" class="btn-login" style="background-color: #666; margin-top: 10px;" onclick="clearAll()">Clear All</button>
+        <button type="button" class="btn-login btn-clear" onclick="clearAll()">Clear All</button>
     </form>
 </div>
 
@@ -134,10 +147,13 @@
     }
 
     function clearAll() {
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-        document.getElementById("rememberMe").checked = false;
-        document.getElementById("message").innerHTML = "";
+        if (confirm("Are you sure you want to clear all fields?")) {
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("rememberMe").checked = false;
+            document.getElementById("message").innerHTML = "";
+            alert("All fields have been cleared.");
+        }
     }
 
     document.getElementById("rememberMe").addEventListener("change", function() {
